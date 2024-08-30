@@ -17,13 +17,9 @@ export default defineType({
       type: 'text',
     }),
     defineField({
-      name: 'video',
-      title: 'Video',
-      type: 'url',
-      validation: (Rule) =>
-        Rule.required().uri({
-          scheme: ['http', 'https', 'ftp', 'ftps'],
-        }),
+      name: 'videoUrl',
+      title: 'Video URL',
+      type: 'string',
     }),
     defineField({
       name: 'exercises',
@@ -49,11 +45,7 @@ export default defineType({
             defineField({
               name: 'soundslice',
               title: 'Soundslice',
-              type: 'url',
-              validation: (Rule) =>
-                Rule.required().uri({
-                  scheme: ['http', 'https'],
-                }),
+              type: 'string',
             }),
           ],
           preview: {
