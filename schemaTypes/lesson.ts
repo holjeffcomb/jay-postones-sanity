@@ -12,6 +12,11 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'lessonImage',
+      title: 'Lesson Image',
+      type: 'image',
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'text',
@@ -44,7 +49,7 @@ export default defineType({
             }),
             defineField({
               name: 'soundslice',
-              title: 'Soundslice',
+              title: 'Soundslice URL',
               type: 'url',
             }),
           ],
