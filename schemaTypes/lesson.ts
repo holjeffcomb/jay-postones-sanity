@@ -19,7 +19,7 @@ export default defineType({
     defineField({
       name: 'videoUrl',
       title: 'Video URL',
-      type: 'string',
+      type: 'url',
     }),
     defineField({
       name: 'exercises',
@@ -45,7 +45,7 @@ export default defineType({
             defineField({
               name: 'soundslice',
               title: 'Soundslice',
-              type: 'string',
+              type: 'url',
             }),
           ],
           preview: {
