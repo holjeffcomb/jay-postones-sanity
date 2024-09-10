@@ -47,10 +47,18 @@ export default defineType({
           {title: 'Intermediate', value: 'intermediate'},
           {title: 'Advanced', value: 'advanced'},
         ],
-        layout: 'dropdown', // Optional: You can use 'radio' instead of 'dropdown' if you prefer radio buttons
+        layout: 'dropdown',
       },
       initialValue: 'all',
-      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{type: 'string'}],
+      options: {
+        layout: 'tags',
+      },
     }),
   ],
   preview: {
