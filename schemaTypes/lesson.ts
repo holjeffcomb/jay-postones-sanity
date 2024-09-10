@@ -83,7 +83,7 @@ export default defineType({
           {title: 'Intermediate', value: 'intermediate'},
           {title: 'Advanced', value: 'advanced'},
         ],
-        layout: 'dropdown',
+        layout: 'radio',
       },
       initialValue: 'all',
     }),
