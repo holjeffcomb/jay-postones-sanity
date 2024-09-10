@@ -71,6 +71,22 @@ export default defineType({
         layout: 'tags',
       },
     }),
+    defineField({
+      name: 'level',
+      title: 'Level',
+      type: 'string',
+      description: 'Select the difficulty level of this lesson.',
+      options: {
+        list: [
+          {title: 'All Levels', value: 'all'},
+          {title: 'Beginner', value: 'beginner'},
+          {title: 'Intermediate', value: 'intermediate'},
+          {title: 'Advanced', value: 'advanced'},
+        ],
+        layout: 'dropdown',
+      },
+      initialValue: 'all',
+    }),
   ],
   preview: {
     select: {
