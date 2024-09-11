@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import {tagOptions} from './common/tagOptions'
 
 export default defineType({
   name: 'lesson',
@@ -63,15 +64,6 @@ export default defineType({
       ],
     }),
     defineField({
-      name: 'tags',
-      title: 'Tags',
-      type: 'array',
-      of: [{type: 'string'}],
-      options: {
-        layout: 'tags',
-      },
-    }),
-    defineField({
       name: 'level',
       title: 'Level',
       type: 'string',
@@ -86,6 +78,15 @@ export default defineType({
         layout: 'radio',
       },
       initialValue: 'all',
+    }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{type: 'string'}],
+      options: {
+        list: tagOptions,
+      },
     }),
   ],
   preview: {

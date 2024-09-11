@@ -1,0 +1,17 @@
+export const tagOptions = [
+  {title: 'Drum fills', value: 'drum-fills'},
+  {title: 'Grooves', value: 'grooves'},
+  {title: 'Rudiments', value: 'rudiments'},
+  {title: 'Polyrhythms', value: 'polyrhythms'},
+  {title: 'Odd Timing', value: 'odd-timing'},
+  {title: 'Double Kick', value: 'double-kick'},
+  {title: 'Single Kick', value: 'single-kick'},
+  {title: 'Basic techniques', value: 'basic-techniques'},
+  {title: 'Flow', value: 'flow'},
+  {title: 'Limb Independence', value: 'limb-independence'},
+  {title: 'TesseracT', value: 'tesseract'},
+  {title: 'Single Strokes', value: 'single-strokes'},
+  {title: 'Double Strokes', value: 'double-strokes'},
+  {title: 'Ghost Notes', value: 'ghost-notes'},
+  {title: 'Paradiddle', value: 'paradiddle'},
+]
