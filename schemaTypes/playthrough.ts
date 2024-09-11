@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import {tagOptions} from './common/tagOptions'
 
 export default defineType({
   name: 'playthrough',
@@ -26,6 +27,15 @@ export default defineType({
       title: 'Video URL',
       type: 'url',
       description: 'An optional URL for a video',
+    }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{type: 'string'}],
+      options: {
+        list: tagOptions,
+      },
     }),
   ],
   preview: {
