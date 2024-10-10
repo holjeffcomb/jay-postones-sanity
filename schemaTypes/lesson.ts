@@ -88,6 +88,11 @@ export default defineType({
         list: tagOptions,
       },
     }),
+    defineField({
+      name: 'isDisplayed',
+      title: 'Display on Lesson Browser?',
+      type: 'boolean',
+    }),
   ],
   preview: {
     select: {
