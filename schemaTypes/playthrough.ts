@@ -34,6 +34,21 @@ export default defineType({
       description: 'An optional URL for a video',
     }),
     defineField({
+      name: 'membershipLevel',
+      title: 'Membership Level',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Free', value: 'free'},
+          {title: 'Silver', value: 'silver'},
+          {title: 'Gold', value: 'gold'},
+          {title: 'Platinum', value: 'platinum'},
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'free',
+    }),
+    defineField({
       name: 'tags',
       title: 'Tags',
       type: 'array',
