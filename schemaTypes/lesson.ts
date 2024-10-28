@@ -44,33 +44,7 @@ export default defineType({
       type: 'array',
       of: [
         {
-          type: 'object',
-          name: 'exercise',
-          title: 'Exercise',
-          fields: [
-            defineField({
-              name: 'title',
-              title: 'Title',
-              type: 'string',
-              validation: (Rule) => Rule.required(),
-            }),
-            defineField({
-              name: 'description',
-              title: 'Description',
-              type: 'text', // No need to specify `optional`, as it's optional by default
-            }),
-            defineField({
-              name: 'soundslice',
-              title: 'Soundslice URL',
-              type: 'url',
-            }),
-          ],
-          preview: {
-            select: {
-              title: 'title',
-              subtitle: 'description',
-            },
-          },
+          type: 'exercise',
         },
       ],
     }),
