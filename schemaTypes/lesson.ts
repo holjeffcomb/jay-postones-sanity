@@ -33,6 +33,22 @@ export default defineType({
       title: 'Description',
       type: 'text',
     }),
+    // Adding the new fields
+    defineField({
+      name: 'sticking',
+      title: 'Sticking',
+      type: 'string',
+    }),
+    defineField({
+      name: 'timeSignature',
+      title: 'Time Signature',
+      type: 'string',
+    }),
+    defineField({
+      name: 'tempo',
+      title: 'Tempo',
+      type: 'string',
+    }),
     defineField({
       name: 'videoUrl',
       title: 'Video URL',
