@@ -33,7 +33,6 @@ export default defineType({
       title: 'Description',
       type: 'text',
     }),
-    // Adding the new fields
     defineField({
       name: 'sticking',
       title: 'Sticking',
@@ -103,6 +102,15 @@ export default defineType({
       options: {
         list: tagOptions,
       },
+    }),
+    defineField({
+      name: 'downloadableFile',
+      title: 'Downloadable File',
+      type: 'file',
+      options: {
+        accept: '.zip,.pdf,.docx', // Adjust accepted file types if needed
+      },
+      description: 'Upload a file that users can download, such as a ZIP file.',
     }),
     defineField({
       name: 'isDisplayed',
