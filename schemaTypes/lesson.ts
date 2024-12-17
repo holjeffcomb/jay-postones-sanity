@@ -57,11 +57,7 @@ export default defineType({
       name: 'exercises',
       title: 'Exercises',
       type: 'array',
-      of: [
-        {
-          type: 'exercise',
-        },
-      ],
+      of: [{type: 'exercise'}],
     }),
     defineField({
       name: 'level',

@@ -1,10 +1,19 @@
 import {defineField, defineType} from 'sanity'
+import {v4 as uuidv4} from 'uuid'
 
 export default defineType({
   name: 'exercise',
   type: 'object',
   title: 'Exercise',
   fields: [
+    defineField({
+      name: 'id',
+      type: 'string',
+      title: 'Unique ID',
+      description: 'Automatically generated UUID for each exercise',
+      readOnly: true,
+      initialValue: () => uuidv4(),
+    }),
     defineField({
       name: 'title',
       type: 'string',
