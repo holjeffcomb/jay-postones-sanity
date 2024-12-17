@@ -55,11 +55,6 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'videoUrl',
-      title: 'Video URL',
-      type: 'url',
-    }),
-    defineField({
       name: 'exercises',
       title: 'Exercises',
       type: 'array',
