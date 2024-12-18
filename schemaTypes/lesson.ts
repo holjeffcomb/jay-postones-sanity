@@ -7,12 +7,6 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'course',
-      title: 'Parent Course',
-      type: 'reference',
-      to: [{type: 'course'}],
-    }),
-    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
