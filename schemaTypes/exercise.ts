@@ -58,5 +58,13 @@ export default defineType({
       hidden: ({parent}) => parent?.type !== 'soundslice',
       validation: (Rule) => Rule.uri({scheme: ['http', 'https']}),
     }),
+    defineField({
+      name: 'createdAt',
+      type: 'datetime',
+      title: 'Created At',
+      description: 'Timestamp when this exercise was created',
+      readOnly: true,
+      initialValue: () => new Date().toISOString(),
+    }),
   ],
 })
