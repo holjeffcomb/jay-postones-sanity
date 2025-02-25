@@ -40,12 +40,48 @@ export default defineType({
       description: 'An optional URL for a video',
     }),
     defineField({
+      name: 'contentType',
+      title: 'Content Type',
+      type: 'string',
+      description: 'Choose whether this course consists of lessons or modules.',
+      options: {
+        list: [
+          {title: 'Lessons', value: 'lessons'},
+          {title: 'Modules', value: 'modules'},
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'lessons',
+    }),
+    defineField({
       name: 'lessons',
       title: 'Lessons',
       type: 'array',
       description: 'Each course requires at least one lesson.',
       of: [{type: 'reference', to: {type: 'lesson'}}],
-      validation: (Rule) => Rule.min(1).required(),
+      hidden: ({document}) => document?.contentType !== 'lessons', // Hide unless 'Lessons' is selected
+      validation: (Rule) =>
+        Rule.custom((lessons, context) => {
+          if (context.document?.contentType === 'lessons' && (!lessons || lessons.length < 1)) {
+            return 'A course with lessons must have at least one lesson.'
+          }
+          return true
+        }),
+    }),
+    defineField({
+      name: 'modules',
+      title: 'Modules',
+      type: 'array',
+      description: 'Each course requires at least one module if using modules.',
+      of: [{type: 'reference', to: {type: 'module'}}],
+      hidden: ({document}) => document?.contentType !== 'modules', // Hide unless 'Modules' is selected
+      validation: (Rule) =>
+        Rule.custom((modules, context) => {
+          if (context.document?.contentType === 'modules' && (!modules || modules.length < 1)) {
+            return 'A course with modules must have at least one module.'
+          }
+          return true
+        }),
     }),
     defineField({
       name: 'level',
