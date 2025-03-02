@@ -97,14 +97,21 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'downloadableFile',
-      title: 'Downloadable File',
-      type: 'file',
-      options: {
-        accept: '.zip,.pdf,.docx', // Adjust accepted file types if needed
-      },
-      description: 'Upload a file that users can download, such as a ZIP file.',
+      name: 'downloadableFiles',
+      title: 'Downloadable Files',
+      type: 'array',
+      of: [
+        {
+          type: 'file',
+          options: {
+            accept: '.pdf,.gp,.gpx,.gp5,.doc,.docx,.jpg,.jpeg,.png,.gif,.mp3,.wav,.zip,.rar',
+          },
+        },
+      ],
+      description:
+        'Upload multiple files for download (PDFs, Guitar Pro, images, audio, docs, etc.).',
     }),
+
     defineField({
       name: 'isDisplayed',
       title: 'Display on Lesson Browser?',
