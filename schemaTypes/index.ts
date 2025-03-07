@@ -4,5 +4,6 @@ import user from './user'
 import playthrough from './playthrough'
 import exercise from './exercise'
 import module from './module'
+import tag from './tag'
 
-export const schemaTypes = [lesson, course, playthrough, user, exercise, module]
+export const schemaTypes = [lesson, course, playthrough, user, exercise, module, tag]
