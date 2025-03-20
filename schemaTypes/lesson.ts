@@ -105,7 +105,8 @@ export default defineType({
         {
           type: 'file',
           options: {
-            accept: '.pdf,.gp,.gpx,.gp5,.doc,.docx,.jpg,.jpeg,.png,.gif,.mp3,.wav,.zip,.rar',
+            accept:
+              '.pdf,.gp,.gpx,.gp5,.doc,.docx,.jpg,.jpeg,.png,.gif,.mp3,.wav,.zip,.rar,.mid,.midi',
           },
         },
       ],
