@@ -44,8 +44,9 @@ export default defineType({
     }),
     defineField({
       name: 'tempo',
-      title: 'Tempo',
+      title: 'Goal Tempo',
       type: 'string',
+      description: 'The text "BPM" will automatically be displayed on the front end (eg. 120 BPM)',
     }),
     defineField({
       name: 'exercises',
