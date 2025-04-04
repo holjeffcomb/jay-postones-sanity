@@ -54,7 +54,7 @@ export default defineType({
       type: 'array',
       of: [{type: 'exercise'}],
       validation: (Rule) =>
-        Rule.required().min(1).warning('A lesson must have at least one exercise.'),
+        Rule.required().min(1).error('A lesson must have at least one exercise.'),
     }),
     defineField({
       name: 'level',
