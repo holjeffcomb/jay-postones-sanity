@@ -6,7 +6,6 @@ import {schemaTypes} from './schemaTypes'
 export default defineConfig({
   name: 'default',
   title: 'jay-postones-backend',
-
   projectId: 'bcij3qe4',
   dataset: 'production',
 
