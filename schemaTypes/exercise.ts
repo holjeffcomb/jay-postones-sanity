@@ -39,10 +39,7 @@ export default defineType({
       type: 'array',
       title: 'Content',
       hidden: ({parent}) => parent?.type !== 'portableText',
-      of: [
-        {type: 'block'}, // Standard text blocks
-        {type: 'image', options: {hotspot: true}}, // Add image support
-      ],
+      of: [{type: 'block'}, {type: 'image', options: {hotspot: true}}],
     }),
     defineField({
       name: 'videoUrl',
@@ -57,6 +54,13 @@ export default defineType({
       title: 'Soundslice URL',
       hidden: ({parent}) => parent?.type !== 'soundslice',
       validation: (Rule) => Rule.uri({scheme: ['http', 'https']}),
+    }),
+    defineField({
+      name: 'showMarkDifficult',
+      type: 'boolean',
+      title: 'Able to Mark as Difficult?',
+      description: 'Enable this if you want this exercise to show the "Mark Difficult" button.',
+      initialValue: true,
     }),
     defineField({
       name: 'createdAt',
