@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import EasierLessonsInput from '../components/EasierLessonsInput'
 
 export default defineType({
   name: 'lesson',
@@ -119,6 +120,15 @@ export default defineType({
       name: 'isDisplayed',
       title: 'Display on Lesson Browser?',
       type: 'boolean',
+    }),
+    defineField({
+      name: 'easierLessons',
+      title: 'Easier Lessons',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'lesson'}]}],
+      components: {
+        input: EasierLessonsInput, // Custom input component
+      },
     }),
   ],
   preview: {
