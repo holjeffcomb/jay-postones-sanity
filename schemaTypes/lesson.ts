@@ -26,12 +26,19 @@ export default defineType({
       name: 'summary',
       title: 'Summary',
       type: 'text',
-      validation: (Rule) => Rule.max(200),
+      rows: 4,
+      validation: (Rule) => [
+        Rule.required().warning('A summary is optional but recommended'),
+        Rule.max(200).error('Summary must be 200 characters or less'),
+      ],
+      description: 'A short summary of the lesson.',
     }),
     defineField({
       name: 'description',
       title: 'Description',
       type: 'text',
+      validation: (Rule) => Rule.required().warning('A summary is strongly recommended'),
+      description: 'This will be displayed in the "Notes From Jay" section.',
     }),
     defineField({
       name: 'sticking',
