@@ -37,13 +37,6 @@ export default defineType({
     }),
 
     defineField({
-      name: 'videoUrl',
-      title: 'Video URL',
-      type: 'url',
-      description: 'Main playthrough video URL',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
       name: 'exercises',
       title: 'Exercises',
       type: 'array',
