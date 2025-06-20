@@ -17,26 +17,54 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'summary',
-      title: 'Summary',
-      type: 'text',
-      validation: (Rule) => Rule.max(200),
-    }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-    }),
-    defineField({
       name: 'image',
       title: 'Image',
       type: 'image',
     }),
     defineField({
+      name: 'summary',
+      title: 'Summary',
+      type: 'text',
+      rows: 4,
+      validation: (Rule) => [Rule.max(200).error('Summary must be 200 characters or less')],
+      description: 'A short summary of the playthrough.',
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      description: 'This will be displayed in the "Notes From Jay" section.',
+    }),
+
+    defineField({
       name: 'videoUrl',
       title: 'Video URL',
       type: 'url',
-      description: 'An optional URL for a video',
+      description: 'Main playthrough video URL',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'exercises',
+      title: 'Exercises',
+      type: 'array',
+      of: [{type: 'exercise'}],
+      description: 'Optional additional exercises related to this playthrough',
+    }),
+    defineField({
+      name: 'level',
+      title: 'Level',
+      type: 'string',
+      description: 'Select the difficulty level of this playthrough.',
+      options: {
+        list: [
+          {title: 'All Levels', value: 'all'},
+          {title: 'Beginner', value: 'beginner'},
+          {title: 'Intermediate', value: 'intermediate'},
+          {title: 'Advanced', value: 'advanced'},
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'all',
     }),
     defineField({
       name: 'membershipLevel',
@@ -64,10 +92,33 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: 'downloadableFiles',
+      title: 'Downloadable Files',
+      type: 'array',
+      of: [
+        {
+          type: 'file',
+          options: {
+            accept:
+              '.pdf,.gp,.gpx,.gp5,.doc,.docx,.jpg,.jpeg,.png,.gif,.mp3,.wav,.zip,.rar,.mid,.midi',
+          },
+        },
+      ],
+      description:
+        'Upload multiple files for download (PDFs, Guitar Pro, images, audio, docs, etc.).',
+    }),
+    defineField({
+      name: 'isDisplayed',
+      title: 'Display on Lesson Browser?',
+      type: 'boolean',
+      initialValue: true,
+    }),
   ],
   preview: {
     select: {
       title: 'title',
+      subtitle: 'description',
       media: 'image',
     },
   },
