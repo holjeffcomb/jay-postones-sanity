@@ -23,6 +23,15 @@ export default defineType({
       type: 'image',
     }),
     defineField({
+      name: 'previewVideo',
+      title: 'Preview Video',
+      type: 'file',
+      description: 'A short video preview (preferably 10-15 seconds, 720p, optimized for web)',
+      options: {
+        accept: 'video/mp4,video/webm',
+      },
+    }),
+    defineField({
       name: 'summary',
       title: 'Summary',
       type: 'text',
