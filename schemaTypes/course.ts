@@ -36,7 +36,7 @@ export default defineType({
       name: 'previewVideo',
       title: 'Preview Video',
       type: 'file',
-      description: 'A short video preview (10-15 seconds, optimized for web)',
+      description: 'A short video preview (preferably 10-15 seconds, 720p, optimized for web)',
       options: {
         accept: 'video/mp4,video/webm',
       },
@@ -121,6 +121,11 @@ export default defineType({
         layout: 'radio',
       },
       initialValue: 'free',
+    }),
+    defineField({
+      name: 'stripeProductId',
+      title: 'Stripe Product ID',
+      type: 'string',
     }),
     defineField({
       name: 'tags',
