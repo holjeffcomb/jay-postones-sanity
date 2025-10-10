@@ -142,7 +142,7 @@ export default defineType({
       name: 'isVisible',
       title: 'Display on Course Browser?',
       type: 'boolean',
-      initialValue: true, // or false, depending on your preference
+      initialValue: true,
     }),
   ],
   preview: {
