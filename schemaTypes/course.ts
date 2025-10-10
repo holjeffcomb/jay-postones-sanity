@@ -138,6 +138,12 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: 'isVisible',
+      title: 'Display on Course Browser?',
+      type: 'boolean',
+      initialValue: true, // or false, depending on your preference
+    }),
   ],
   preview: {
     select: {
