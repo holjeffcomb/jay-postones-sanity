@@ -2,6 +2,7 @@ import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
+import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 
 export default defineConfig({
   name: 'default',
@@ -9,7 +10,27 @@ export default defineConfig({
   projectId: 'bcij3qe4',
   dataset: 'production',
 
-  plugins: [structureTool(), visionTool()],
+  plugins: [
+    structureTool({
+      structure: (S, context) =>
+        S.list()
+          .title('Content')
+          .items([
+            // Orderable Courses List
+            orderableDocumentListDeskItem({
+              type: 'course',
+              title: 'Courses',
+              S,
+              context,
+            }),
+            // Add a divider
+            S.divider(),
+            // All other document types (lessons, modules, tags, etc.)
+            ...S.documentTypeListItems().filter((listItem) => listItem.getId() !== 'course'),
+          ]),
+    }),
+    visionTool(),
+  ],
 
   schema: {
     types: schemaTypes,
