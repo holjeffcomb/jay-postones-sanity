@@ -1,10 +1,13 @@
 import {defineField, defineType} from 'sanity'
+import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 
 export default defineType({
   name: 'course',
   title: 'Course',
   type: 'document',
+  orderings: [orderRankOrdering],
   fields: [
+    orderRankField({type: 'course'}),
     defineField({
       name: 'title',
       title: 'Title',
