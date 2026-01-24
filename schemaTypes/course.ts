@@ -20,6 +20,13 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'featured',
+      title: 'Featured Course',
+      type: 'boolean',
+      description: 'Mark this course as featured to display it in the Featured Courses section',
+      initialValue: false,
+    }),
+    defineField({
       name: 'summary',
       title: 'Summary',
       type: 'text',
