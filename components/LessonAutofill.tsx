@@ -26,9 +26,17 @@ export default function LessonAutofill(props: StringInputProps) {
     setError(null)
 
     try {
-      // Call local proxy server (runs on port 3001)
-      // This avoids CORS issues by proxying requests through a local server
-      const proxyUrl = process.env.SANITY_STUDIO_PROXY_URL || 'http://localhost:3001/autofill'
+      // Determine proxy URL based on environment
+      // In production, use the deployed proxy URL
+      // In development, use localhost
+      const isProduction = typeof window !== 'undefined' && window.location.hostname !== 'localhost'
+      
+      // Get proxy URL from environment variable (exposed via SANITY_STUDIO_ prefix)
+      // Or use default based on environment
+      const envProxyUrl = process.env.SANITY_STUDIO_PROXY_URL
+      // Default to your Next.js frontend API route
+      const defaultProductionUrl = 'https://jaypostones.com/api/autofill'
+      const proxyUrl = envProxyUrl || (isProduction ? defaultProductionUrl : 'http://localhost:3001/autofill')
 
       const response = await fetch(proxyUrl, {
         method: 'POST',
