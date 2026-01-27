@@ -29,3 +29,5 @@
 *.local
 
 backups/
+.vercel
+.env*.local
