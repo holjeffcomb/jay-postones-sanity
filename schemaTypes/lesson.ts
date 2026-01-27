@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import EasierLessonsInput from '../components/EasierLessonsInput'
+import LessonAutofill from '../components/LessonAutofill'
 
 export default defineType({
   name: 'lesson',
@@ -13,9 +14,38 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'transcript',
+      title: 'Transcript (for Autofill)',
+      type: 'text',
+      rows: 8,
+      description:
+        'Paste the lesson transcript here and use the autofill tool to generate subtitle, summary, and description.',
+      components: {
+        input: LessonAutofill,
+      },
+    }),
+    defineField({
       name: 'subtitle',
       title: 'Subtitle',
       type: 'string',
+    }),
+    defineField({
+      name: 'summary',
+      title: 'Summary',
+      type: 'text',
+      rows: 4,
+      validation: (Rule) => [
+        Rule.required().warning('A summary is optional but recommended'),
+        Rule.max(150).error('Summary must be 150 characters or less'),
+      ],
+      description: 'A short summary of the lesson.',
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      validation: (Rule) => Rule.required().warning('A summary is strongly recommended'),
+      description: 'This will be displayed in the "Notes From Jay" section.',
     }),
     defineField({
       name: 'lessonImage',
@@ -30,24 +60,6 @@ export default defineType({
       options: {
         accept: 'video/mp4,video/webm',
       },
-    }),
-    defineField({
-      name: 'summary',
-      title: 'Summary',
-      type: 'text',
-      rows: 4,
-      validation: (Rule) => [
-        Rule.required().warning('A summary is optional but recommended'),
-        Rule.max(200).error('Summary must be 200 characters or less'),
-      ],
-      description: 'A short summary of the lesson.',
-    }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-      validation: (Rule) => Rule.required().warning('A summary is strongly recommended'),
-      description: 'This will be displayed in the "Notes From Jay" section.',
     }),
     defineField({
       name: 'sticking',
