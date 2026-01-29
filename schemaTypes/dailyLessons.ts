@@ -5,14 +5,6 @@ export default defineType({
   name: 'dailyLessons',
   title: 'Daily Lessons',
   type: 'document',
-  // Make it a singleton - only one instance
-  __experimental_actions: [
-    // Disable create/delete, only allow update
-    // 'create',
-    // 'delete',
-    'update',
-    'publish',
-  ],
   fields: [
     defineField({
       name: 'title',
