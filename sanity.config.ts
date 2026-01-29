@@ -16,6 +16,15 @@ export default defineConfig({
         S.list()
           .title('Content')
           .items([
+            // Daily Lessons (singleton)
+            S.listItem()
+              .title('Daily Lessons')
+              .id('dailyLessons')
+              .child(
+                S.document()
+                  .schemaType('dailyLessons')
+                  .documentId('dailyLessons'),
+              ),
             // Orderable Courses List
             orderableDocumentListDeskItem({
               type: 'course',
@@ -26,7 +35,9 @@ export default defineConfig({
             // Add a divider
             S.divider(),
             // All other document types (lessons, modules, tags, etc.)
-            ...S.documentTypeListItems().filter((listItem) => listItem.getId() !== 'course'),
+            ...S.documentTypeListItems().filter(
+              (listItem) => listItem.getId() !== 'course' && listItem.getId() !== 'dailyLessons',
+            ),
           ]),
     }),
     visionTool(),

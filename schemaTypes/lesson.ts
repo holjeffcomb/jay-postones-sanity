@@ -34,10 +34,7 @@ export default defineType({
       title: 'Summary',
       type: 'text',
       rows: 4,
-      validation: (Rule) => [
-        Rule.required().warning('A summary is optional but recommended'),
-        Rule.max(150).error('Summary must be 150 characters or less'),
-      ],
+      validation: (Rule) => Rule.required().warning('A summary is optional but recommended'),
       description: 'A short summary of the lesson.',
     }),
     defineField({
@@ -148,6 +145,14 @@ export default defineType({
       name: 'isDisplayed',
       title: 'Display on Lesson Browser?',
       type: 'boolean',
+    }),
+    defineField({
+      name: 'isDailyLesson',
+      title: 'Daily Lesson',
+      type: 'boolean',
+      description:
+        'Toggle this to include this lesson in the Daily Lessons list. The list will update automatically.',
+      initialValue: false,
     }),
     defineField({
       name: 'easierLessons',
