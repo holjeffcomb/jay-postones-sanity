@@ -7,6 +7,7 @@ import module from './module'
 import tag from './tag'
 import verifiedMasterclassUser from './verifiedMasterclassUser'
 import dailyLessons from './dailyLessons'
+import registrationSelection from './registrationSelection'
 
 export const schemaTypes = [
   lesson,
@@ -18,4 +19,5 @@ export const schemaTypes = [
   tag,
   verifiedMasterclassUser,
   dailyLessons,
+  registrationSelection,
 ]

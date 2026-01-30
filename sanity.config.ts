@@ -16,6 +16,15 @@ export default defineConfig({
         S.list()
           .title('Content')
           .items([
+            // Registration Selection Page (singleton)
+            S.listItem()
+              .title('Registration Selection Page')
+              .id('registrationSelection')
+              .child(
+                S.document()
+                  .schemaType('registrationSelection')
+                  .documentId('registrationSelection'),
+              ),
             // Daily Lessons (singleton)
             S.listItem()
               .title('Daily Lessons')
@@ -36,7 +45,10 @@ export default defineConfig({
             S.divider(),
             // All other document types (lessons, modules, tags, etc.)
             ...S.documentTypeListItems().filter(
-              (listItem) => listItem.getId() !== 'course' && listItem.getId() !== 'dailyLessons',
+              (listItem) =>
+                listItem.getId() !== 'course' &&
+                listItem.getId() !== 'dailyLessons' &&
+                listItem.getId() !== 'registrationSelection',
             ),
           ]),
     }),
