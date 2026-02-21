@@ -56,12 +56,27 @@ async function migratePlaythroughToTesseract() {
           ...docData,
         }
 
-        // Use transaction to delete old and create new atomically
-        await client
-          .transaction()
-          .delete(docId) // Delete old playthrough document
-          .create(newDoc) // Create new tesseract document with same ID
-          .commit()
+        // Sanity doesn't allow changing _type directly.
+        // The workaround is to delete and recreate, but Sanity may prevent
+        // creating a document with the same _id immediately after deletion.
+        // 
+        // Try using createOrReplace first - if that fails with _type error,
+        // fall back to delete + delay + create
+        try {
+          // Try createOrReplace first - this might work in some Sanity versions
+          await client.createOrReplace(newDoc)
+        } catch (replaceError: any) {
+          // If createOrReplace fails due to _type immutability, use delete + create
+          if (replaceError?.message?.includes('_type') || replaceError?.message?.includes('immutable')) {
+            console.log(`   ⚠️  createOrReplace failed, using delete + create approach...`)
+            await client.delete(docId)
+            // Wait for deletion to fully process
+            await new Promise(resolve => setTimeout(resolve, 1000))
+            await client.create(newDoc)
+          } else {
+            throw replaceError
+          }
+        }
 
         console.log(`   ✅ Successfully migrated: ${doc.title || docId}`)
       } catch (error) {
