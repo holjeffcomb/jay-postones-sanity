@@ -10,7 +10,9 @@
     "build": "sanity build",
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy",
-    "proxy": "node server/autofill-proxy.js"
+    "proxy": "node server/autofill-proxy.js",
+    "migrate:tesseract": "tsx scripts/migratePlaythroughToTesseract.ts",
+    "migrate:tesseract:sanity": "sanity exec scripts/migratePlaythroughToTesseract.ts --with-user-token"
   },
   "keywords": [
     "sanity"

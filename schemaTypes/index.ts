@@ -1,7 +1,7 @@
 import lesson from './lesson'
 import course from './course'
 import user from './user'
-import playthrough from './playthrough'
+import tesseract from './tesseract'
 import exercise from './exercise'
 import module from './module'
 import tag from './tag'
@@ -12,7 +12,7 @@ import registrationSelection from './registrationSelection'
 export const schemaTypes = [
   lesson,
   course,
-  playthrough,
+  tesseract,
   user,
   exercise,
   module,
