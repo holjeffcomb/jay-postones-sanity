@@ -1,8 +1,8 @@
 import {defineField, defineType} from 'sanity'
 
 export default defineType({
-  name: 'playthrough',
-  title: 'Playthrough',
+  name: 'tesseract',
+  title: 'Tesseract',
   type: 'document',
   fields: [
     defineField({
@@ -27,7 +27,7 @@ export default defineType({
       type: 'text',
       rows: 4,
       validation: (Rule) => [Rule.max(200).error('Summary must be 200 characters or less')],
-      description: 'A short summary of the playthrough.',
+      description: 'A short summary.',
     }),
     defineField({
       name: 'description',
@@ -41,13 +41,13 @@ export default defineType({
       title: 'Exercises',
       type: 'array',
       of: [{type: 'exercise'}],
-      description: 'Optional additional exercises related to this playthrough',
+      description: 'Optional additional exercises related to this tesseract',
     }),
     defineField({
       name: 'level',
       title: 'Level',
       type: 'string',
-      description: 'Select the difficulty level of this playthrough.',
+      description: 'Select the difficulty level.',
       options: {
         list: [
           {title: 'All Levels', value: 'all'},
