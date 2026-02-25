@@ -12,7 +12,9 @@
     "deploy-graphql": "sanity graphql deploy",
     "proxy": "node server/autofill-proxy.js",
     "migrate:tesseract": "tsx scripts/migratePlaythroughToTesseract.ts",
-    "migrate:tesseract:sanity": "sanity exec scripts/migratePlaythroughToTesseract.ts --with-user-token"
+    "migrate:tesseract:sanity": "sanity exec scripts/migratePlaythroughToTesseract.ts --with-user-token",
+    "migrate:tesseract-schema": "tsx scripts/migrateTesseractToNewSchema.ts",
+    "migrate:tesseract-schema:sanity": "sanity exec scripts/migrateTesseractToNewSchema.ts --with-user-token"
   },
   "keywords": [
     "sanity"
@@ -30,6 +32,7 @@
   "devDependencies": {
     "@sanity/eslint-config-studio": "^4.0.0",
     "@types/react": "^18.0.25",
+    "baseline-browser-mapping": "^2.10.0",
     "eslint": "^8.6.0",
     "prettier": "^3.0.2",
     "tsx": "^4.21.0",
