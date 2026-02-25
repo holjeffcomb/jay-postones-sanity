@@ -41,12 +41,20 @@ export default defineConfig({
               S,
               context,
             }),
+            // Orderable Tesseract List
+            orderableDocumentListDeskItem({
+              type: 'tesseract',
+              title: 'Tesseract',
+              S,
+              context,
+            }),
             // Add a divider
             S.divider(),
             // All other document types (lessons, modules, tags, etc.)
             ...S.documentTypeListItems().filter(
               (listItem) =>
                 listItem.getId() !== 'course' &&
+                listItem.getId() !== 'tesseract' &&
                 listItem.getId() !== 'dailyLessons' &&
                 listItem.getId() !== 'registrationSelection',
             ),
