@@ -154,6 +154,28 @@ export default defineType({
       type: 'boolean',
       initialValue: true,
     }),
+    defineField({
+      name: 'redirectIfNotOwned',
+      title: 'Redirect if not owned?',
+      type: 'boolean',
+      description:
+        'When enabled, users who do not own this course will be redirected to a URL instead of the pricing page.',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'redirectUrl',
+      title: 'Redirect URL',
+      type: 'url',
+      description: 'Where to send users who do not own this course.',
+      hidden: ({document}) => !document?.redirectIfNotOwned,
+      validation: (Rule) =>
+        Rule.custom((url, context) => {
+          if (context.document?.redirectIfNotOwned && !url) {
+            return 'A redirect URL is required when "Redirect if not owned" is enabled.'
+          }
+          return true
+        }),
+    }),
   ],
   preview: {
     select: {
