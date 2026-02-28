@@ -138,6 +138,14 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'requiresExplicitPurchase',
+      title: 'Requires explicit purchase',
+      type: 'boolean',
+      description:
+        'When enabled, Gold/Platinum membership does not grant access. Only users who have purchased this specific course can access it. Use for Masterclass courses and similar premium content.',
+      initialValue: false,
+    }),
+    defineField({
       name: 'tags',
       title: 'Tags',
       type: 'array',
