@@ -142,7 +142,7 @@ export default defineType({
       title: 'Requires explicit purchase',
       type: 'boolean',
       description:
-        'When enabled, Gold/Platinum membership does not grant access. Only users who have purchased this specific course can access it. Use for Masterclass courses and similar premium content.',
+        'When enabled, membership does not grant access. Only users who have purchased this specific course can access it. Use for Masterclass courses and similar premium content.',
       initialValue: false,
     }),
     defineField({
