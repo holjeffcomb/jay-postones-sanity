@@ -41,9 +41,9 @@ export default defineConfig({
               .title('Daily Lessons')
               .id('dailyLessons')
               .child(S.document().schemaType('dailyLessons').documentId('dailyLessons')),
-            // Shed Lessons (singleton)
+            // The Shed (singleton)
             S.listItem()
-              .title('Shed Lessons')
+              .title('The Shed')
               .id('shedLessons')
               .child(S.document().schemaType('shedLessons').documentId('shedLessons')),
             // Tesseract
@@ -53,6 +53,11 @@ export default defineConfig({
               S,
               context,
             }),
+            // Livestreams (singleton)
+            S.listItem()
+              .title('Livestreams')
+              .id('livestream')
+              .child(S.document().schemaType('livestream').documentId('livestream')),
             S.divider(),
             // Tag
             docItems.find((item) => item.getId() === 'tag'),
