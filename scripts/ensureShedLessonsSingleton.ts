@@ -1,5 +1,5 @@
 /**
- * Ensures the Shed Lessons singleton document exists with the correct title.
+ * Ensures singleton documents exist (Shed Lessons, Livestream).
  * Run once to fix "Untitled" showing in the document pane.
  *
  * npx tsx scripts/ensureShedLessonsSingleton.ts
@@ -18,18 +18,25 @@ const client = createClient({
   token: process.env.SANITY_WRITE_TOKEN,
 })
 
-async function ensureShedLessonsSingleton() {
+const singletons = [
+  {id: 'shedLessons', type: 'shedLessons'},
+  {id: 'livestream', type: 'livestream'},
+]
+
+async function ensureSingletons() {
   try {
-    const existing = await client.fetch('*[_id == "shedLessons"][0]{ _id }')
-    if (existing) {
-      console.log('✅ Shed Lessons singleton already exists')
-    } else {
-      await client.create({
-        _id: 'shedLessons',
-        _type: 'shedLessons',
-        lessons: [],
-      })
-      console.log('✅ Created Shed Lessons singleton')
+    for (const {id, type} of singletons) {
+      const existing = await client.fetch(`*[_id == "${id}"][0]{ _id }`)
+      if (existing) {
+        console.log(`✅ ${type} singleton already exists`)
+      } else {
+        await client.create({
+          _id: id,
+          _type: type,
+          lessons: [],
+        })
+        console.log(`✅ Created ${type} singleton`)
+      }
     }
   } catch (error) {
     console.error('❌ Failed:', error)
@@ -37,4 +44,4 @@ async function ensureShedLessonsSingleton() {
   }
 }
 
-ensureShedLessonsSingleton()
+ensureSingletons()
