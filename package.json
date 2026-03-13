@@ -14,7 +14,8 @@
     "migrate:tesseract": "tsx scripts/migratePlaythroughToTesseract.ts",
     "migrate:tesseract:sanity": "sanity exec scripts/migratePlaythroughToTesseract.ts --with-user-token",
     "migrate:tesseract-schema": "tsx scripts/migrateTesseractToNewSchema.ts",
-    "migrate:tesseract-schema:sanity": "sanity exec scripts/migrateTesseractToNewSchema.ts --with-user-token"
+    "migrate:tesseract-schema:sanity": "sanity exec scripts/migrateTesseractToNewSchema.ts --with-user-token",
+    "ensure:shed-lessons": "tsx scripts/ensureShedLessonsSingleton.ts"
   },
   "keywords": [
     "sanity"

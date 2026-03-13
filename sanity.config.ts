@@ -12,10 +12,50 @@ export default defineConfig({
 
   plugins: [
     structureTool({
-      structure: (S, context) =>
-        S.list()
+      structure: (S, context) => {
+        const docItems = S.documentTypeListItems()
+        return S.list()
           .title('Content')
           .items([
+            // Courses
+            orderableDocumentListDeskItem({
+              type: 'course',
+              title: 'Courses',
+              S,
+              context,
+            }),
+            // Modules (custom title for sidebar; schema keeps "Module" for document view)
+            S.listItem()
+              .title('Modules')
+              .id('module')
+              .schemaType('module')
+              .child(S.documentTypeList('module').title('Modules')),
+            // Lessons (custom title for sidebar; schema keeps "Lesson" for document view)
+            S.listItem()
+              .title('Lessons')
+              .id('lesson')
+              .schemaType('lesson')
+              .child(S.documentTypeList('lesson').title('Lessons')),
+            // Daily Lessons (singleton)
+            S.listItem()
+              .title('Daily Lessons')
+              .id('dailyLessons')
+              .child(S.document().schemaType('dailyLessons').documentId('dailyLessons')),
+            // Shed Lessons (singleton)
+            S.listItem()
+              .title('Shed Lessons')
+              .id('shedLessons')
+              .child(S.document().schemaType('shedLessons').documentId('shedLessons')),
+            // Tesseract
+            orderableDocumentListDeskItem({
+              type: 'tesseract',
+              title: 'Tesseract',
+              S,
+              context,
+            }),
+            S.divider(),
+            // Tag
+            docItems.find((item) => item.getId() === 'tag'),
             // Registration Selection Page (singleton)
             S.listItem()
               .title('Registration Selection Page')
@@ -25,40 +65,8 @@ export default defineConfig({
                   .schemaType('registrationSelection')
                   .documentId('registrationSelection'),
               ),
-            // Daily Lessons (singleton)
-            S.listItem()
-              .title('Daily Lessons')
-              .id('dailyLessons')
-              .child(
-                S.document()
-                  .schemaType('dailyLessons')
-                  .documentId('dailyLessons'),
-              ),
-            // Orderable Courses List
-            orderableDocumentListDeskItem({
-              type: 'course',
-              title: 'Courses',
-              S,
-              context,
-            }),
-            // Orderable Tesseract List
-            orderableDocumentListDeskItem({
-              type: 'tesseract',
-              title: 'Tesseract',
-              S,
-              context,
-            }),
-            // Add a divider
-            S.divider(),
-            // All other document types (lessons, modules, tags, etc.)
-            ...S.documentTypeListItems().filter(
-              (listItem) =>
-                listItem.getId() !== 'course' &&
-                listItem.getId() !== 'tesseract' &&
-                listItem.getId() !== 'dailyLessons' &&
-                listItem.getId() !== 'registrationSelection',
-            ),
-          ]),
+          ].filter((item): item is NonNullable<typeof item> => Boolean(item)))
+      },
     }),
     visionTool(),
   ],
