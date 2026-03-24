@@ -63,6 +63,13 @@ export default defineType({
       initialValue: true,
     }),
     defineField({
+      name: 'integration',
+      type: 'boolean',
+      title: 'Integration',
+      description: 'Toggle on if this is an Integration',
+      initialValue: false,
+    }),
+    defineField({
       name: 'createdAt',
       type: 'datetime',
       title: 'Created At',
