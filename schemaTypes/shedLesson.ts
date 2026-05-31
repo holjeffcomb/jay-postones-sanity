@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import ShedLessonsInput from '../components/ShedLessonsInput'
 
 export default defineType({
   name: 'shedLessons',
@@ -11,6 +12,9 @@ export default defineType({
       type: 'array',
       description: 'Add lessons to Shed Lessons. Pick from existing lessons or create new ones.',
       of: [{type: 'reference', to: {type: 'lesson'}}],
+      components: {
+        input: ShedLessonsInput,
+      },
     }),
   ],
   preview: {
