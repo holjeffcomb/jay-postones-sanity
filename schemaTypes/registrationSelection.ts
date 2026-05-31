@@ -88,6 +88,67 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'mentorshipOption',
+      title: 'Mentorship Option',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'title',
+          title: 'Title',
+          type: 'string',
+          initialValue: 'Mentorship',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'badge',
+          title: 'Badge/Subtitle',
+          type: 'string',
+          initialValue: 'Application Only',
+        }),
+        defineField({
+          name: 'description',
+          title: 'Description',
+          type: 'text',
+          rows: 2,
+          initialValue: 'Work one-on-one with Jay.',
+        }),
+        defineField({
+          name: 'price',
+          title: 'Price',
+          type: 'string',
+          initialValue: 'By Application',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'priceDescription',
+          title: 'Price Description',
+          type: 'string',
+        }),
+        defineField({
+          name: 'buttonText',
+          title: 'Button Text',
+          type: 'string',
+          initialValue: 'Apply Now',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'redirectUrl',
+          title: 'Button Redirect URL (e.g. GHL form link)',
+          description:
+            'When the button is clicked the visitor is sent here. Leave blank to disable the button.',
+          type: 'url',
+          validation: (Rule) => Rule.uri({scheme: ['http', 'https']}),
+        }),
+        defineField({
+          name: 'benefits',
+          title: 'Benefits',
+          type: 'array',
+          of: [{type: 'string'}],
+          validation: (Rule) => Rule.min(1),
+        }),
+      ],
+    }),
+    defineField({
       name: 'masterclassOption',
       title: 'Masterclass Option',
       type: 'object',
