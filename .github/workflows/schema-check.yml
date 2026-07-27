@@ -1,0 +1,45 @@
+name: Schema Artifacts Check
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  schema-artifacts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Regenerate schema and types
+        run: npm run types:build
+
+      - name: Verify committed artifacts are up to date
+        run: |
+          for artifact in schema.json sanity.types.ts; do
+            if [ ! -f "$artifact" ]; then
+              echo "::error::$artifact was not produced by 'npm run types:build'."
+              exit 1
+            fi
+          done
+
+          # Untracked files are invisible to `git diff`, so a PR that generates the
+          # artifacts without committing them would otherwise pass. Marking them
+          # intent-to-add forces them into the diff.
+          git add --intent-to-add -- schema.json sanity.types.ts
+
+          if ! git diff --exit-code -- schema.json sanity.types.ts; then
+            echo ""
+            echo "::error::schema.json and/or sanity.types.ts are out of date or uncommitted."
+            echo "The schema in schemaTypes/ changed but the generated artifacts were not regenerated."
+            echo "Run 'npm run types:build' locally and commit the result."
+            exit 1
+          fi
