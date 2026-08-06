@@ -114,6 +114,14 @@ export default defineType({
       initialValue: 'free',
     }),
     defineField({
+      name: 'dripDurationDays',
+      title: 'Days until next lesson unlocks',
+      type: 'number',
+      description:
+        'Only used by courses with drip-feeding turned on. How long a student keeps this lesson as their newest one before the next lesson unlocks. Leave empty to use the default of 7 days.',
+      validation: (Rule) => Rule.min(1).integer(),
+    }),
+    defineField({
       name: 'tags',
       title: 'Tags',
       type: 'array',

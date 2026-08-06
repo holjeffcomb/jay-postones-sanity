@@ -1476,6 +1476,13 @@
         },
         "optional": true
       },
+      "dripScheduled": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "boolean"
+        },
+        "optional": true
+      },
       "tags": {
         "type": "objectAttribute",
         "value": {
@@ -1825,6 +1832,13 @@
               "value": "platinum"
             }
           ]
+        },
+        "optional": true
+      },
+      "dripDurationDays": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "number"
         },
         "optional": true
       },

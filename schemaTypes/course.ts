@@ -146,6 +146,14 @@ export default defineType({
       initialValue: false,
     }),
     defineField({
+      name: 'dripScheduled',
+      title: 'Drip-feed lessons on a schedule',
+      type: 'boolean',
+      description:
+        'When enabled, students unlock one lesson at a time on their own schedule, starting when they confirm the start modal on the course page. Each lesson stays current for the number of days set on that lesson. Leave off for normal courses, where every lesson is available straight away.',
+      initialValue: false,
+    }),
+    defineField({
       name: 'tags',
       title: 'Tags',
       type: 'array',

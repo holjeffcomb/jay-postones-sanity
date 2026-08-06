@@ -247,6 +247,7 @@ export type Course = {
   membershipLevel?: 'free' | 'silver' | 'gold' | 'platinum'
   stripeProductId?: string
   requiresExplicitPurchase?: boolean
+  dripScheduled?: boolean
   tags?: Array<{
     _ref: string
     _type: 'reference'
@@ -302,6 +303,7 @@ export type Lesson = {
   >
   level?: 'all' | 'beginner' | 'intermediate' | 'advanced'
   membershipLevel?: 'free' | 'silver' | 'gold' | 'platinum'
+  dripDurationDays?: number
   tags?: Array<{
     _ref: string
     _type: 'reference'
