@@ -154,21 +154,6 @@ export default defineType({
       initialValue: false,
     }),
     defineField({
-      name: 'dripActiveFrom',
-      title: 'Drip applies to students who bought from',
-      type: 'datetime',
-      description:
-        'Students who bought this course before this date and time keep immediate access to every lesson. Only students who buy from this point onwards are put on the schedule. Set it to the moment you turn drip-feeding on, so nobody who has already paid loses access to lessons they can open today.',
-      hidden: ({document}) => !document?.dripScheduled,
-      validation: (Rule) =>
-        Rule.custom((activeFrom, context) => {
-          if (context.document?.dripScheduled && !activeFrom) {
-            return 'A start date is required when drip-feeding is enabled, so existing students keep their access.'
-          }
-          return true
-        }),
-    }),
-    defineField({
       name: 'tags',
       title: 'Tags',
       type: 'array',
