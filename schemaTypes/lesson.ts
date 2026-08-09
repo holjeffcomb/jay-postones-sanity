@@ -118,8 +118,8 @@ export default defineType({
       title: 'Days until next lesson unlocks',
       type: 'number',
       description:
-        'Only used by courses with drip-feeding turned on. How long a student keeps this lesson as their newest one before the next lesson unlocks. Leave empty to use the default of 7 days.',
-      validation: (Rule) => Rule.min(1).integer(),
+        'Only used by courses with drip-feeding turned on. How long a student keeps this lesson as their newest one before the next lesson unlocks. Leave empty to use the default of 7 days. Set it to 0 to release the next lesson at the same moment as this one, which is how you let a group of lessons arrive together.',
+      validation: (Rule) => Rule.min(0).integer(),
     }),
     defineField({
       name: 'tags',
