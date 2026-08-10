@@ -122,6 +122,20 @@ export default defineType({
       validation: (Rule) => Rule.min(0).integer(),
     }),
     defineField({
+      name: 'ghlTag',
+      title: 'Email tag for this release',
+      type: 'string',
+      description:
+        'Only used by courses with drip-feeding turned on. When this lesson opens for a student, this tag is added to their contact in GoHighLevel, which is what you hang the lesson email off. Only needed on the first lesson of each group that arrives together, since the whole group opens on one email. Use something you will recognise later, like masterclass-part-2.',
+      // Free text is asking for trouble here: a stray capital or space makes a
+      // second tag in GoHighLevel that no workflow is listening to, and the
+      // failure is silent - the student simply never gets the email.
+      validation: (Rule) =>
+        Rule.regex(/^[a-z0-9][a-z0-9-]*$/, {
+          name: 'lowercase letters, numbers and hyphens',
+        }).max(100),
+    }),
+    defineField({
       name: 'tags',
       title: 'Tags',
       type: 'array',
