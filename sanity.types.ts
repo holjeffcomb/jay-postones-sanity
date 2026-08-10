@@ -304,6 +304,7 @@ export type Lesson = {
   level?: 'all' | 'beginner' | 'intermediate' | 'advanced'
   membershipLevel?: 'free' | 'silver' | 'gold' | 'platinum'
   dripDurationDays?: number
+  ghlTag?: string
   tags?: Array<{
     _ref: string
     _type: 'reference'
