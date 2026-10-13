@@ -248,6 +248,7 @@ export type Course = {
   stripeProductId?: string
   requiresExplicitPurchase?: boolean
   dripScheduled?: boolean
+  accessMonths?: number
   tags?: Array<{
     _ref: string
     _type: 'reference'

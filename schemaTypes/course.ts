@@ -154,6 +154,14 @@ export default defineType({
       initialValue: false,
     }),
     defineField({
+      name: 'accessMonths',
+      title: 'Access period (months)',
+      type: 'number',
+      description:
+        'How long a student keeps this course (and site access) after they start it, e.g. 12. When it runs out they need a paid Membership to keep access. Leave blank for a course students keep for good. Changing it only affects students who start after the change; anyone already started keeps the end date they were given. Individual students can be given lifetime access from the admin page.',
+      validation: (Rule) => Rule.integer().positive(),
+    }),
+    defineField({
       name: 'tags',
       title: 'Tags',
       type: 'array',
