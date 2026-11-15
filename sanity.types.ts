@@ -99,7 +99,7 @@ export type Exercise = {
   _type: 'exercise'
   id?: string
   title?: string
-  type?: 'portableText' | 'video' | 'soundslice'
+  type?: 'portableText' | 'video' | 'soundslice' | 'drumki'
   content?: Array<
     | {
         children?: Array<{
@@ -135,6 +135,7 @@ export type Exercise = {
   >
   videoUrl?: string
   soundsliceUrl?: string
+  drumkiSlug?: string
   showMarkDifficult?: boolean
   integration?: boolean
   createdAt?: string

@@ -30,6 +30,7 @@ export default defineType({
           {title: 'Text', value: 'portableText'},
           {title: 'Video', value: 'video'},
           {title: 'Soundslice', value: 'soundslice'},
+          {title: 'DrumKi player', value: 'drumki'},
         ],
         layout: 'radio',
       },
@@ -54,6 +55,23 @@ export default defineType({
       title: 'Soundslice URL',
       hidden: ({parent}) => parent?.type !== 'soundslice',
       validation: (Rule) => Rule.uri({scheme: ['http', 'https']}),
+    }),
+    defineField({
+      name: 'drumkiSlug',
+      type: 'string',
+      title: 'DrumKi exercise ID',
+      description:
+        "The exercise's ID in DrumKi: the part after # in the player's address, e.g. ex-1-simple-3-2-poly-groove-pedal-hat-rw3ae. Paste the ID only, not a link. Keep the Soundslice URL filled in so the exercise can be switched back.",
+      hidden: ({parent}) => parent?.type !== 'drumki',
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          const parent = context.parent as {type?: string} | undefined
+          if (parent?.type !== 'drumki') return true
+          if (!value) return 'A DrumKi exercise needs its DrumKi exercise ID.'
+          if (!/^[A-Za-z0-9_-]{1,120}$/.test(value))
+            return 'Use the ID only: letters, numbers, - and _ (no spaces, # or links).'
+          return true
+        }),
     }),
     defineField({
       name: 'showMarkDifficult',
