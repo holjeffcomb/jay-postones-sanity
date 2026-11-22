@@ -59,17 +59,21 @@ export default defineType({
     defineField({
       name: 'drumkiSlug',
       type: 'string',
-      title: 'DrumKi exercise ID',
+      title: 'DrumKi exercise',
       description:
-        "The exercise's ID in DrumKi: the part after # in the player's address, e.g. ex-1-simple-3-2-poly-groove-pedal-hat-rw3ae. Paste the ID only, not a link. Keep the Soundslice URL filled in so the exercise can be switched back.",
+        "Paste the exercise's address from the DrumKi player (the one with # in it), or just the ID after the #. Not a student share link (/s/...): those open the exercise for anyone. Keep the Soundslice URL filled in so the exercise can be switched back.",
       hidden: ({parent}) => parent?.type !== 'drumki',
       validation: (Rule) =>
         Rule.custom((value, context) => {
           const parent = context.parent as {type?: string} | undefined
           if (parent?.type !== 'drumki') return true
-          if (!value) return 'A DrumKi exercise needs its DrumKi exercise ID.'
-          if (!/^[A-Za-z0-9_-]{1,120}$/.test(value))
-            return 'Use the ID only: letters, numbers, - and _ (no spaces, # or links).'
+          if (!value) return "A DrumKi exercise needs the exercise's address or ID."
+          const v = value.trim()
+          if (/\/s\/[A-Za-z0-9]+/.test(v))
+            return "That's a student share link, which anyone can open. Use the exercise's address from the player instead (it has # in it)."
+          const id = v.includes('#') ? v.slice(v.lastIndexOf('#') + 1) : v
+          if (!/^[A-Za-z0-9_-]{1,120}$/.test(id))
+            return 'That doesn\'t look like a DrumKi exercise. Paste the address from the player (with # in it) or the ID after the #.'
           return true
         }),
     }),
