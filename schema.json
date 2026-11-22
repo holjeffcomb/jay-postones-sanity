@@ -524,6 +524,10 @@
               {
                 "type": "string",
                 "value": "soundslice"
+              },
+              {
+                "type": "string",
+                "value": "drumki"
               }
             ]
           },
@@ -797,6 +801,13 @@
           "optional": true
         },
         "soundsliceUrl": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "drumkiSlug": {
           "type": "objectAttribute",
           "value": {
             "type": "string"
